@@ -9,6 +9,7 @@ boolean isEauChaude=false;
 boolean isGlaconPlein=false;
 boolean isGlacon=false;
 int yRect=-1;
+int yRect2=-1;
 int xBarree=0;
 int xBarree2=0;
 int timerGlacon=0;
@@ -77,6 +78,7 @@ void draw(){
     }
     if(isGlacon==true){
      RemplissageGlacon(); 
+     RemplissageEauGlacons();
     }
     image(schema,200,80);
     indicationPos();
@@ -133,13 +135,32 @@ void RemplissageEau(){
    }
     
 }//finRemplissageEau
-
+void RemplissageEauGlacons(){
+  fill(43,152,245,125);
+   rect(233,515,149,yRect2);
+   
+   noStroke();
+   if(chronoTime>=13 && yRect2>=-45){
+        yRect2=yRect2-1;
+   }
+   if(chronoTime>=25 && yRect2>=-90){
+        yRect2=yRect2-1;
+   }
+   if(chronoTime>=37 && yRect2>=-135){
+        yRect2=yRect2-1;
+   }
+   if(chronoTime>=49 && yRect2>=-180){
+        yRect2=yRect2-1;
+   }
+   
+    
+}//finRemplissageEau
 void RemplissageGlacon(){
    ++timerGlacon;
-   image(glacon1,304,452);
-   if(timerGlacon>=25)image(glacon2,243,405);
-   if(timerGlacon>=50)image(glacon3,245,380);
-   if(timerGlacon>=65){
+   if(chronoTime<=48)image(glacon1,304,452);
+   if(timerGlacon>=25 && chronoTime<=36)image(glacon2,243,405);
+   if(timerGlacon>=50 && chronoTime<=24)image(glacon3,245,380);
+   if(timerGlacon>=65 && chronoTime<=12){
      image(glacon4,234,324);
      isGlaconPlein=true;
    }
